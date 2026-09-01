@@ -53,7 +53,7 @@ export default function Header() {
             </a>
           ))}
           <a
-            href="mailto:maxmcgrath207@gmail.com"
+            href="mailto:mudasirabass31@gmail.com"
             className="ml-2 text-sm font-medium bg-[#c8f080] text-[#080c0b] px-5 py-2 rounded-full hover:bg-[#9ac850] transition-all duration-150"
           >
             Hire me
@@ -91,7 +91,7 @@ export default function Header() {
               </a>
             ))}
             <a
-              href="mailto:maxmcgrath207@gmail.com"
+              href="mailto:mudasirabass31@gmail.com"
               onClick={close}
               className="mt-4 block text-center font-medium bg-[#c8f080] text-[#080c0b] px-5 py-3 rounded-full hover:bg-[#9ac850] transition"
             >

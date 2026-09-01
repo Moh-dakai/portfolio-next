@@ -52,7 +52,7 @@ export default function Contact() {
             className="flex flex-col gap-3"
           >
             <a
-              href="mailto:maxmcgrath207@gmail.com"
+              href="mailto:mudasirabass31@gmail.com"
               className="group flex items-center gap-4 bg-[#101614] border border-white/[0.07] rounded-2xl p-5 hover:border-[#c8f080]/30 hover:bg-[#121a18] transition-all duration-300"
             >
               <div className="p-3 rounded-xl bg-[#c8f080]/10 text-[#c8f080] border border-[#c8f080]/10">
@@ -62,7 +62,7 @@ export default function Contact() {
                 <p className="font-mono text-[0.68rem] uppercase tracking-wider text-[#7a7672] mb-0.5">
                   Email
                 </p>
-                <p className="text-sm text-[#eae5dc]">maxmcgrath207@gmail.com</p>
+                <p className="text-sm text-[#eae5dc]">mudasirabass31@gmail.com</p>
               </div>
               <ArrowUpRight
                 size={16}

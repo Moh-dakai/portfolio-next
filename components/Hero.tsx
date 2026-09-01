@@ -116,7 +116,7 @@ export default function Hero() {
           </a>
           <div className="flex items-center gap-2 ml-auto">
             <a
-              href="mailto:maxmcgrath207@gmail.com"
+              href="mailto:mudasirabass31@gmail.com"
               className="p-2.5 rounded-full border border-white/[0.08] text-[#7a7672] hover:text-[#eae5dc] hover:border-white/[0.18] transition-all"
               aria-label="Email"
             >
