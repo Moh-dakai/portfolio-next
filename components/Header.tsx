@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { profile } from "@/lib/data";
 
-const navLinks = [
-  { label: "Work", href: "#work" },
+const links = [
+  { label: "Projects", href: "#projects" },
+  { label: "Open source", href: "#open-source" },
   { label: "Experience", href: "#experience" },
-  { label: "Skills", href: "#skills" },
-  { label: "Certifications", href: "#certifications" },
+  { label: "Stack", href: "#stack" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -17,89 +17,53 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handler, { passive: true });
-    return () => window.removeEventListener("scroll", handler);
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const close = () => setOpen(false);
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#080c0b]/90 backdrop-blur-xl border-b border-white/[0.07] shadow-[0_1px_40px_rgba(0,0,0,0.4)]"
-          : "bg-transparent"
+      className={`fixed inset-x-0 top-0 z-50 transition-colors ${
+        scrolled || open ? "border-b border-line bg-bg/85 backdrop-blur-xl" : ""
       }`}
     >
-      <div className="max-w-[1100px] mx-auto px-5 flex items-center justify-between h-16">
-        {/* Logo */}
-        <a
-          href="#top"
-          className="font-mono text-[0.82rem] font-medium tracking-widest text-[#c8f080] border border-[#c8f080]/40 px-3 py-1.5 rounded-lg hover:border-[#c8f080]/80 hover:bg-[#c8f080]/5 transition-all duration-200"
-        >
-          MAM
+      <div className="wrap flex h-14 items-center justify-between">
+        <a href="#top" className="font-mono text-sm font-medium text-ink">
+          <span className="text-accent">~/</span>mudasir
         </a>
-
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-1">
-          {navLinks.map((l) => (
-            <a
-              key={l.label}
-              href={l.href}
-              className="text-[#7a7672] text-sm px-4 py-2 rounded-full hover:text-[#eae5dc] hover:bg-white/[0.06] transition-all duration-150"
-            >
+        <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
+          {links.map((l) => (
+            <a key={l.href} href={l.href} className="rounded-md px-3 py-1.5 text-sm text-dim transition-colors hover:text-ink">
               {l.label}
             </a>
           ))}
           <a
-            href="mailto:mudasirabass31@gmail.com"
-            className="ml-2 text-sm font-medium bg-[#c8f080] text-[#080c0b] px-5 py-2 rounded-full hover:bg-[#9ac850] transition-all duration-150"
+            href={`mailto:${profile.email}`}
+            className="ml-2 rounded-md bg-ink px-3.5 py-1.5 text-sm font-medium text-bg transition-opacity hover:opacity-85"
           >
             Hire me
           </a>
         </nav>
-
-        {/* Mobile burger */}
         <button
-          onClick={() => setOpen((p) => !p)}
-          className="md:hidden p-2 rounded-lg border border-white/[0.1] text-[#eae5dc] hover:bg-white/[0.05] transition"
-          aria-label="Toggle menu"
+          className="p-2 text-dim md:hidden"
+          onClick={() => setOpen((o) => !o)}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
         >
-          {open ? <X size={18} /> : <Menu size={18} />}
+          {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
-
-      {/* Mobile drawer */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden bg-[#080c0b]/97 backdrop-blur-xl border-b border-white/[0.07] px-5 pb-5 pt-2"
-          >
-            {navLinks.map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                onClick={close}
-                className="block text-[#7a7672] py-3 border-b border-white/[0.05] hover:text-[#eae5dc] transition"
-              >
-                {l.label}
-              </a>
-            ))}
-            <a
-              href="mailto:mudasirabass31@gmail.com"
-              onClick={close}
-              className="mt-4 block text-center font-medium bg-[#c8f080] text-[#080c0b] px-5 py-3 rounded-full hover:bg-[#9ac850] transition"
-            >
-              Hire me
+      {open && (
+        <nav className="wrap flex flex-col pb-4 md:hidden" aria-label="Mobile">
+          {links.map((l) => (
+            <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="py-3 text-dim hover:text-ink">
+              {l.label}
             </a>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          ))}
+        </nav>
+      )}
     </header>
   );
 }

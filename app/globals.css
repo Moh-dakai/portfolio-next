@@ -1,52 +1,86 @@
 @import "tailwindcss";
 
-:root {
-  --bg: #080c0b;
-  --surface: #101614;
-  --surface-2: #161d1b;
-  --border: rgba(255, 255, 255, 0.07);
-  --text: #eae5dc;
-  --muted: #7a7672;
-  --accent: #c8f080;
-  --accent-d: #9ac850;
-  --accent-glow: rgba(200, 240, 128, 0.15);
-  --mono: "DM Mono", monospace;
-  --serif: "DM Serif Display", Georgia, serif;
-  --sans: "DM Sans", system-ui, sans-serif;
+@theme inline {
+  --color-bg: #08090c;
+  --color-panel: #0e1015;
+  --color-panel-2: #12151c;
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-ink: #e9ebf1;
+  --color-dim: #8b91a1;
+  --color-accent: #8b9bff;
+  --color-mint: #4ade9c;
+  --color-amber: #f5b94a;
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
+  scroll-padding-top: 5rem;
 }
 
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--sans);
-  font-weight: 300;
-  line-height: 1.7;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 99px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(200, 240, 128, 0.3);
+::selection {
+  background: rgba(139, 155, 255, 0.3);
 }
 
-/* Selection */
-::selection {
-  background: rgba(200, 240, 128, 0.2);
-  color: var(--text);
+.wrap {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.h2 {
+  font-size: clamp(1.9rem, 4vw, 2.75rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.chip {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-dim);
+  border: 1px solid var(--color-line);
+  background: rgba(255, 255, 255, 0.02);
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.4rem;
+}
+
+.card {
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  border-radius: 1rem;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+.card:hover {
+  border-color: rgba(139, 155, 255, 0.35);
+  background: var(--color-panel-2);
+}
+
+.dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(ellipse at 50% 0%, #000 30%, transparent 75%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation: none !important; transition: none !important; }
 }
